@@ -6,16 +6,11 @@ import (
 )
 
 func main() {
+	//Web Server
+	go http.ListenAndServe(":7777", server.NewWebServer())
 
-	webServer := server.NewWebServer()
-	go http.ListenAndServe(":7777", webServer)
+	//Proxy Server
+	go http.ListenAndServe(":8888", server.NewProxyServer())
 
-	proxyServer := server.NewProxyServer()
-	go http.ListenAndServe(":8888", proxyServer)
-
-	/*
-	isStop := make(chan bool, 1)
-	<- isStop
-	*/
 	select {}
 }

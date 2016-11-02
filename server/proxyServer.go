@@ -29,7 +29,7 @@ func (s *ProxyServer) copyConn(iConn net.Conn, oConn net.Conn) {
 
 func (s *ProxyServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if iConn, _, err := w.(http.Hijacker).Hijack(); err == nil {
-		fmt.Printf("url:%s\n", r.URL.Host)
+		fmt.Printf("请求URL:%s\n", r.URL.Host)
 
 		host := r.URL.Host
 		if strings.IndexRune(host, ':') == -1 {
